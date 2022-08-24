@@ -1,0 +1,144 @@
+@import './variables';
+@import './mixinsquerys';
+@import './generales';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 33px;
+  align-items: center;
+  .menu_hamburger {
+    width: 35px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    cursor: pointer;
+    span {
+      display: block;
+      height: 2px;
+      background-color: black;
+      pointer-events: none;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .nav {
+    display: none;
+    margin-left: 60px;
+    .nav_items {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      .item {
+        color: $MediumGray;
+        &:hover {
+          color: $AlmostBlack;
+          cursor: pointer;
+        }
+        &.submenu {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          img {
+            pointer-events: none;
+            transition: all 0.5s ease;
+          }
+          &.active {
+            img{
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+
+    @include mobile {
+      display: block;
+      flex:1;
+    }
+  }
+
+  #feature {
+    position: relative;
+    &.active {
+      .submenu_menu {
+        height: 180px;
+      }
+    }
+    .submenu_menu {
+      list-style: none;
+      position: absolute;
+      top:3rem;
+      left:-4rem;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.419);
+      border-radius: 10px;
+      width: 160px; 
+      height: 0px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      transition: height 0.5s ease;
+
+      li {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+        padding-left: 1.5rem;
+        img {
+          width: 16px;
+        }
+        span{
+          flex:1;
+        }
+      }
+    }
+  }
+
+  .header_actions{
+    display: none;
+
+    @include mobile {
+      display: flex;
+    }
+
+    button {
+      padding: .7rem 1.5rem;
+      font-size: 16px;
+      color: $MediumGray;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:last-of-type {
+        border: 2px solid $MediumGray;
+        border-radius:15px;
+      }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.menu_mobile {
+  position: fixed;
+  top:0;
+  right:-300px;
+  width: 300px;
+  height: 100vh;
+  background-color: red;
+  transition: all .5s ease;
+
+  &.show {
+    right:0px;
+  }
+}
